@@ -1,0 +1,46 @@
+#include <iostream>
+#include <list>
+#include <string>
+
+class Account {
+public:
+    Account(int id, const std::string& name) : id(id), name(name) {}
+
+    int getID() const { return id; }
+    const std::string& getName() const { return name; }
+
+private:
+    int id;
+    std::string name;
+};
+
+int main() {
+    std::list<Account> accountList;
+
+    // Adding accounts to the list
+    accountList.push_back(Account(1, "Alice"));
+    accountList.push_back(Account(2, "Bob"));
+    accountList.push_back(Account(3, "Charlie"));
+
+    // Displaying accounts in forward order using iterators
+    std::cout << "Accounts in forward order:" << std::endl;
+    for (const auto& account : accountList) {
+        std::cout << "ID: " << account.getID() << ", Name: " << account.getName() << std::endl;
+    }
+
+    // Displaying accounts in reverse order using reverse iterators
+    std::cout << "\nAccounts in reverse order:" << std::endl;
+    for (auto accountIter = accountList.rbegin(); accountIter != accountList.rend(); ++accountIter) {
+        std::cout << "ID: " << accountIter->getID() << ", Name: " << accountIter->getName() << std::endl;
+    }
+
+    return 0;
+}
+In this example, we define an Account class to store account information. We then use an STL list to store instances of the Account class. The program demonstrates how to add accounts to the list and how to iterate through the list using both forward and reverse iterators to display the account information.
+
+
+
+
+
+Regenerate
+

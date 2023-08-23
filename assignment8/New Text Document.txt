@@ -1,0 +1,4 @@
+ void display() override {
+        std::cout << "Sales Manager Name: " << Employee::getName() << ", ID: " << Employee::getID() 
+                  << ", Department: " << Manager::getDepartment() << ", Commission: " << Salesman::getCommission() << std::endl;
+    }
