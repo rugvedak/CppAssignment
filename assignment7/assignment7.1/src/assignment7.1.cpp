@@ -63,12 +63,17 @@ public:
 		this->bonus = bonus;
 	}
 
-	void accept() override
+	void accept() 
 	{
 		Employee::accept();
-		accept_manager();
 	}
-
+	void display() {
+		cout << "Manager Information:\n";
+		cout << "ID: " << Employee::getId() << " , Salary: "
+				<< Employee::getSalary()<<" , ";
+		
+	}
+protected:
 	void accept_manager() {
 		cout << "Enter manager bonus: ";
 		cin >> bonus;
@@ -76,12 +81,7 @@ public:
 	void display_manager() {
 		cout << "Bonus: " << bonus << "\n";
 	}
-	void display() {
-		cout << "Manager Information:\n";
-		cout << "ID: " << Employee::getId() << " , Salary: "
-				<< Employee::getSalary();<<" , ";
-		display_manager();
-	}
+	
 };
 
 class Salesman: virtual public Employee {
@@ -104,19 +104,17 @@ public:
 		this->comm = comm;
 	}
 
-	void accept() override
+	void accept() 
 	{
 		Employee::accept();
-		accept_salesman();
 	}
 
-	void display() override {
+	void display()  {
 		cout << "Salesman Information:\n";
 		cout << "ID: " << Employee::getId() << " , Salary: "
 				<< Employee::getSalary() << " , ";
-		display_salesman();
-
-	}
+				}
+protected:
 	void accept_salesman() {
 		cout << "Enter salesman commission: ";
 		cin >> comm;
@@ -136,37 +134,19 @@ public:
 					empComm) {
 	}
 
-	void accept() override {
-		Manager::accept();
-		Salesman::accept();
-
+	void accept()  {
+		Employee::accept();
+		Manager::accept_manager();
+		Salesman::accept_salesman();
 	}
 
 	void display() override {
-		cout << "Sales Manager Information:\n";
-		cout << "ID: " << Employee::getId() << " , Salary: "
-				<< Employee::getSalary() << " , Bonus: " << Manager::getBonus()
-				<< " , Commission: " << Salesman::getComm();
-	}
+		Employee::display();
+		Manager::display_manager();
+		Salesman::display_salesman();	}
 };
 int main() {
-	Employee emp;
-	emp.accept();
-	emp.display();
-
-	cout << "-----------------------\n";
-
-	Manager manager;
-	manager.accept();
-	manager.display();
-
-	cout << "-----------------------\n";
-
-	Salesman salesman;
-	salesman.accept();
-	salesman.display();
-	std::cout << "-----------------------\n";
-
+	
 	SalesManager salesManager;
 	salesManager.accept();
 	salesManager.display();
